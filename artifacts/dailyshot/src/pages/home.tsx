@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Coffee, Utensils, Users, Instagram, Facebook, MapPin, Phone, Clock, Music } from "lucide-react";
+import { Coffee, Utensils, Users, Instagram, Facebook, MapPin, Phone, Clock, Music, Menu, X } from "lucide-react";
 import heroImg from "@/assets/hero.png";
 import gallery1 from "@/assets/gallery-1.png";
 import gallery2 from "@/assets/gallery-2.png";
@@ -52,6 +52,7 @@ function generateTimeOptions() {
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -77,6 +78,7 @@ export default function Home() {
   }
 
   const scrollTo = (id: string) => {
+    setMobileMenuOpen(false);
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -86,9 +88,9 @@ export default function Home() {
   return (
     <div className="min-h-[100dvh] flex flex-col font-sans text-ink bg-bg-base">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 h-20 bg-bg-base/90 backdrop-blur-sm border-b border-line z-50 flex items-center px-6 md:px-12">
-        <div className="max-w-6xl mx-auto w-full flex justify-between items-center">
-          <div className="font-serif font-semibold text-2xl tracking-tight text-accent cursor-pointer" onClick={() => scrollTo('inicio')}>
+      <header className="fixed top-0 left-0 right-0 bg-bg-base/90 backdrop-blur-sm border-b border-line z-50">
+        <div className="h-16 md:h-20 max-w-6xl mx-auto w-full flex justify-between items-center px-4 sm:px-6 md:px-12 gap-3">
+          <div className="font-serif font-semibold text-xl md:text-2xl tracking-tight text-accent cursor-pointer shrink-0" onClick={() => scrollTo('inicio')}>
             DailyShot
           </div>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-ink">
@@ -98,17 +100,41 @@ export default function Home() {
             <a href="#galeria" className="hover:text-accent transition-colors">Galería</a>
             <a href="#contacto" className="hover:text-accent transition-colors">Contacto</a>
           </nav>
-          <Button onClick={() => scrollTo('contacto')} className="rounded-full bg-accent hover:bg-accent/90 text-white shadow-none">
-            Reservar
-          </Button>
+          <div className="flex items-center gap-2 shrink-0">
+            <Button
+              onClick={() => scrollTo('contacto')}
+              className="rounded-full bg-accent hover:bg-accent/90 text-white shadow-none h-9 md:h-10 px-4 md:px-5 text-sm"
+            >
+              Reservar
+            </Button>
+            <button
+              type="button"
+              aria-label={mobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
+              onClick={() => setMobileMenuOpen((v) => !v)}
+              className="md:hidden p-2 -mr-2 text-ink hover:text-accent transition-colors"
+            >
+              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
+        {mobileMenuOpen && (
+          <nav className="md:hidden border-t border-line bg-bg-base">
+            <div className="flex flex-col px-4 py-2 text-base font-medium text-ink">
+              <a href="#inicio" onClick={() => setMobileMenuOpen(false)} className="py-3 border-b border-line/60 hover:text-accent transition-colors">Inicio</a>
+              <a href="#menu" onClick={() => setMobileMenuOpen(false)} className="py-3 border-b border-line/60 hover:text-accent transition-colors">Menú</a>
+              <a href="#ubicacion" onClick={() => setMobileMenuOpen(false)} className="py-3 border-b border-line/60 hover:text-accent transition-colors">Ubicación</a>
+              <a href="#galeria" onClick={() => setMobileMenuOpen(false)} className="py-3 border-b border-line/60 hover:text-accent transition-colors">Galería</a>
+              <a href="#contacto" onClick={() => setMobileMenuOpen(false)} className="py-3 hover:text-accent transition-colors">Contacto</a>
+            </div>
+          </nav>
+        )}
       </header>
 
-      <main className="flex-grow pt-20">
+      <main className="flex-grow pt-16 md:pt-20">
         {/* Hero Section */}
-        <section id="inicio" className="py-20 md:py-32 px-6 md:px-12 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <section id="inicio" className="py-16 md:py-32 px-4 sm:px-6 md:px-12 max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-12 items-center">
           <div className="flex flex-col items-start space-y-6">
-            <h1 className="font-serif text-5xl md:text-7xl leading-tight text-ink">
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl leading-[1.05] text-ink break-words">
               El Cafecito Platicador
             </h1>
             <p className="text-lg md:text-xl text-muted-text max-w-md leading-relaxed">
@@ -184,7 +210,7 @@ export default function Home() {
                       <h4 className="font-medium text-lg text-ink group-hover:text-accent transition-colors">{item.name}</h4>
                       <p className="text-sm text-muted-text">{item.desc}</p>
                     </div>
-                    <span className="font-medium text-ink">${item.price}</span>
+                    <span className="font-medium text-ink whitespace-nowrap">${item.price} MXN</span>
                   </div>
                 ))}
               </div>
@@ -208,7 +234,7 @@ export default function Home() {
                       <h4 className="font-medium text-lg text-ink group-hover:text-accent transition-colors">{item.name}</h4>
                       <p className="text-sm text-muted-text">{item.desc}</p>
                     </div>
-                    <span className="font-medium text-ink">${item.price}</span>
+                    <span className="font-medium text-ink whitespace-nowrap">${item.price} MXN</span>
                   </div>
                 ))}
               </div>
@@ -304,7 +330,7 @@ export default function Home() {
                   </svg>
                 </div>
                 <h3 className="font-serif text-2xl text-ink">¡Tu reserva fue recibida!</h3>
-                <p className="text-muted-text">Te contactaremos al 5660589981 para confirmar.</p>
+                <p className="text-muted-text">Te contactaremos al +52 33 1522 1975 para confirmar.</p>
               </div>
             ) : (
               <Form {...form}>
