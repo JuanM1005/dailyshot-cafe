@@ -15,7 +15,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Coffee, Utensils, Users, Instagram, Facebook, MapPin, Phone, Clock, Music, Menu, X } from "lucide-react";
-import heroImg from "@/assets/hero.png";
+import heroImg from "@assets/hero_coffee_1776967854301.jpg";
+import cuceiLogo from "@assets/cucei_logo_1776967856395.png";
 import gallery1 from "@/assets/gallery-1.png";
 import gallery2 from "@/assets/gallery-2.png";
 import gallery3 from "@/assets/gallery-3.png";
@@ -505,10 +506,11 @@ export default function Home() {
 
           {/* Col 3 */}
           <div className="flex justify-start md:justify-end">
-            {/* The real logo will be swapped in by the user */}
-            <div className="border border-line rounded-lg p-6 flex items-center justify-center bg-accent-soft/30 w-fit h-fit">
-              <span className="font-serif text-3xl font-bold tracking-widest text-ink">CUCEI</span>
-            </div>
+            <img
+              src={cuceiLogo}
+              alt="CUCEI - Centro Universitario de Ciencias Exactas e Ingenierías"
+              className="w-full max-w-[260px] h-auto object-contain"
+            />
           </div>
         </div>
 
