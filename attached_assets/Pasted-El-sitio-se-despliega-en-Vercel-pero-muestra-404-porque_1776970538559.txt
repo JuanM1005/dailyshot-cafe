@@ -1,0 +1,59 @@
+El sitio se despliega en Vercel pero muestra 404 porque vite.config.ts 
+depende de variables de entorno específicas de Replit (PORT, BASE_PATH, 
+REPL_ID, etc.) que no existen fuera de Replit.
+
+Hazle estos cambios al archivo artifacts/dailyshot/vite.config.ts 
+para que sea PORTABLE (funcione en Replit Y en Vercel):
+
+1. PRIMERO muéstrame el contenido actual del archivo vite.config.ts 
+   para que yo entienda qué modificarás.
+
+2. Luego aplica estos cambios:
+
+   a) Para CADA `process.env.X` que uses en el config, añade un 
+      fallback razonable:
+      - process.env.PORT → Number(process.env.PORT ?? 5173)
+      - process.env.BASE_PATH → (process.env.BASE_PATH ?? '/')
+      - process.env.REPL_ID → (process.env.REPL_ID ?? '')
+      - process.env.REPLIT_DB_URL → (process.env.REPLIT_DB_URL ?? '')
+      - process.env.REPLIT_DOMAINS → (process.env.REPLIT_DOMAINS ?? '')
+      - Cualquier otra variable de entorno: añade fallback
+
+   b) Si hay `throw new Error("X is required")`, ELIMÍNALO y usa 
+      un valor por defecto.
+
+   c) Los plugins de @replit/* solo deben cargarse si detecta que 
+      está corriendo en Replit. Usa algo como:
+      
+      const isReplit = !!process.env.REPL_ID || !!process.env.REPLIT_DOMAINS;
+      
+      plugins: [
+        react(),
+        tailwindcss(),
+        ...(isReplit ? [
+          cartographer(),
+          devBanner(),
+          runtimeErrorModal()
+        ] : [])
+      ]
+
+   d) Asegúrate de que la configuración de build quede así de simple:
+      
+      build: {
+        outDir: 'dist',
+        emptyOutDir: true,
+      },
+      base: process.env.BASE_PATH ?? '/',
+
+      (NO construyas el outDir con BASE_PATH, déjalo como 'dist' 
+      a secas, relativo al root del proyecto artifacts/dailyshot)
+
+3. Después de aplicar los cambios:
+   - Muéstrame el archivo resultante
+   - Ejecuta `pnpm build` localmente para verificar que compila 
+     sin errores
+   - Confirma que se generó la carpeta artifacts/dailyshot/dist 
+     con un index.html dentro
+   - Haz commit con mensaje: 
+     "Fix: make vite.config.ts portable for Vercel deployment"
+   - Haz push a origin main
