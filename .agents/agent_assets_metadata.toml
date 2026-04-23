@@ -1,5 +1,4 @@
 uploads = []
-outputs = []
 
 [[generated]]
 id = "YtKovmF5MIpR6ncgZ2Ydc"
@@ -42,3 +41,9 @@ id = "tS2n744u_2_4R-x1GE0uA"
 uri = "file://artifacts/dailyshot/src/assets/gallery-6.png"
 type = "image"
 title = "Gallery barista"
+
+[[outputs]]
+id = "Fbw7pNl5hXxFjfXC4ugK2"
+uri = "file://exports/dailyshot-cafe.zip"
+type = "unspecified"
+title = "DailyShot Café — Proyecto completo"
