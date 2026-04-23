@@ -1,0 +1,145 @@
+# Rol
+Actúa como un desarrollador frontend senior especializado en diseño 
+minimalista moderno y experiencia de usuario. Vas a construir un sitio 
+web de una cafetería real.
+
+# Objetivo
+Crear un sitio web estático, responsive y listo para producción para 
+"DailyShot Café", una cafetería de especialidad en Guadalajara, México.
+
+# Stack técnico (obligatorio)
+- React 18 + Vite (NO Next.js, NO Create React App)
+- Tailwind CSS para estilos
+- React Router v6 para navegación entre secciones (SPA con scroll suave)
+- lucide-react para iconos
+- El proyecto DEBE funcionar con `npm run build` y desplegarse en Vercel 
+  como SPA sin configuración adicional
+- Todo el código en un solo proyecto, estructura limpia en /src
+
+# Sistema de diseño
+Colores (usa estos valores exactos en tailwind.config.js):
+- bg-base: #FAFAF7 (blanco cremoso)
+- ink: #1A1A1A (negro suave)
+- muted: #6B6B6B (gris texto secundario)
+- accent: #C97B3C (ámbar cálido, color de marca)
+- accent-soft: #F4E4D1 (ámbar muy claro para fondos sutiles)
+- line: #E8E5DE (líneas y bordes)
+
+Tipografías (importar de Google Fonts):
+- Display/Títulos: "Fraunces", serif (pesos 400, 600)
+- Body: "Inter", sans-serif (pesos 400, 500, 600)
+
+Reglas de diseño:
+- Espaciado generoso (py-20 md:py-32 entre secciones)
+- Max-width del contenido: max-w-6xl mx-auto
+- Bordes redondeados sutiles (rounded-lg, nunca rounded-full excepto botones)
+- Sin sombras pesadas; usa líneas finas y contraste tipográfico
+- Animaciones muy sutiles (hover, fade-in), NO carruseles giratorios
+- Mobile-first, perfectamente responsive
+
+# Estructura del sitio (Single Page con anclas)
+Header fijo con: logo "DailyShot" + navegación (Inicio, Menú, Ubicación, 
+Galería, Contacto) + botón "Reservar" que hace scroll al formulario.
+
+1. HERO (Inicio)
+   - Título grande en serif: "El Cafecito Platicador"
+   - Subtítulo: "Cafetería de especialidad y brunch todo el día en Guadalajara"
+   - Dos botones: "Ver menú" (lleva a #menu) y "Reservar mesa" (lleva a #contacto)
+   - Imagen grande de café/brunch al lado derecho (desktop) o abajo (mobile)
+
+2. SOBRE NOSOTROS (sección corta después del hero)
+   - Texto: "Creado para los buenos amigos. En DailyShot celebramos el ritual 
+     del café y las conversaciones largas. Un espacio donde cada taza es un 
+     pretexto para quedarse un rato más."
+   - Tres pilares con iconos (lucide-react): 
+     · Coffee: "Café de especialidad"
+     · Utensils: "Brunch todo el día"  
+     · Users: "Ambiente acogedor"
+
+3. MENÚ
+   - Dos columnas (en desktop) con tabs: "Bebidas" y "Comida"
+   - Cada item: nombre, descripción breve, precio en MXN (inventa precios 
+     coherentes entre $45 y $180)
+   
+   BEBIDAS (mínimo 8):
+   - Long Black / Americano
+   - Cappuccino Caramelo
+   - Latte
+   - Chai con shot de espresso
+   - Matcha Latte natural
+   - Malteada de café con galleta
+   - Pumpkin Spice Latte (temporada)
+   - Infusión frutal (fresa-kiwi)
+   
+   COMIDA (mínimo 7):
+   - Chilaquiles de la casa
+   - Waffles Xoco-Fresa
+   - Pan Francés con gelato artesanal
+   - Sándwich de Masa Madre (jamón, huevo, aguacate, chipotle)
+   - Sándwich de Tocino con alioli de chipotle
+   - Burrito Percherón
+   - Sándwich Napolitano
+
+4. UBICACIÓN
+   - Columna izquierda: datos
+     · Dirección: Av. Circunvalación Agustín Yáñez 2578, Arcos Vallarta, 
+       44130 Guadalajara, Jal.
+     · Horarios: Lun-Vie 7:30 am – 9 pm · Sáb 9 am – 9 pm · Cerrado domingos
+     · Teléfono: +52 33 1522 1975
+     · Pide a domicilio: Uber Eats y Rappi (dos botones que sean enlaces)
+   - Columna derecha: iframe de Google Maps embed apuntando a esa dirección
+
+5. GALERÍA
+   - Grid de 6 imágenes tipo masonry o grid 3x2
+   - Usar placeholders de alta calidad de Unsplash con query "specialty coffee", 
+     "brunch", "cappuccino", "latte art", "cafe interior"
+   - Hover: ligero zoom y overlay oscuro
+
+6. CONTACTO / RESERVACIONES (FORMULARIO FUNCIONAL)
+   - Título: "Reserva tu mesa"
+   - Campos con validación en tiempo real:
+     · Nombre completo (texto, requerido, min 3 caracteres)
+     · Email (requerido, formato válido con regex)
+     · Teléfono (requerido, 10 dígitos)
+     · Fecha (date picker, requerido, no fechas pasadas)
+     · Hora (select con opciones cada 30 min desde 8:00 a 20:30)
+     · Número de personas (select 1-10)
+     · Notas adicionales (textarea, opcional)
+   - Botón "Confirmar reserva" en color accent
+   - Al enviar:
+     · Validar todos los campos
+     · Mostrar mensaje de éxito bonito ("¡Tu reserva fue recibida! Te 
+       contactaremos al [5660589981] para confirmar.")
+     · Limpiar el formulario
+     · Usar estado React (useState) para manejar el form
+   - No necesita backend real; simula el envío con un setTimeout de 1 segundo 
+     y un estado "enviando..."
+
+7. FOOTER (MUY IMPORTANTE - personalización académica)
+   Tres columnas en desktop:
+   - Columna 1: Logo "DailyShot" + redes sociales (Instagram, Facebook, TikTok 
+     con iconos de lucide-react y enlaces a @dailyshotmx)
+   - Columna 2: "Proyecto académico"
+     · Alumno: [Aguirre Mares Juan Antonio]
+     · Materia: [Desarrollo de aplicaciones web en la nube y móviles]
+     · Profesor: [ZEUS EMANUEL GUTIERREZ COBIAN]
+     · Calendario: [2026-A]
+   - Columna 3: Logo del CUCEI (usar placeholder con texto "CUCEI" estilizado 
+     por ahora, yo lo reemplazaré con el logo real)
+   
+   Debajo: línea divisoria + texto pequeño centrado 
+   "© 2026 DailyShot Café - Proyecto académico sin fines comerciales"
+
+# Criterios de aceptación
+- [ ] El sitio es 100% responsive (probado en 375px, 768px, 1440px)
+- [ ] Lighthouse performance > 85
+- [ ] El formulario valida correctamente todos los campos
+- [ ] `npm run build` genera carpeta `dist/` sin errores
+- [ ] Navegación por anclas con scroll suave funciona
+- [ ] Todos los textos son legibles (contraste AA)
+- [ ] Sin errores en consola del navegador
+
+# Entrega
+Crea el proyecto completo, corre `npm install`, levanta el servidor de 
+desarrollo y muéstrame el preview. Explícame brevemente la estructura 
+de archivos que generaste.

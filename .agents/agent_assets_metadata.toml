@@ -1,0 +1,44 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "YtKovmF5MIpR6ncgZ2Ydc"
+uri = "file://artifacts/dailyshot/src/assets/hero.png"
+type = "image"
+title = "Hero cappuccino brunch"
+
+[[generated]]
+id = "Vbj7htdG12-nJj9fpKYaa"
+uri = "file://artifacts/dailyshot/src/assets/gallery-1.png"
+type = "image"
+title = "Gallery specialty pour"
+
+[[generated]]
+id = "cEwCECG6Vi0gwx0r5Jt05"
+uri = "file://artifacts/dailyshot/src/assets/gallery-2.png"
+type = "image"
+title = "Gallery latte art"
+
+[[generated]]
+id = "Yg1nKNZSMcGqEJZeTH7dR"
+uri = "file://artifacts/dailyshot/src/assets/gallery-3.png"
+type = "image"
+title = "Gallery brunch plate"
+
+[[generated]]
+id = "R5g_e7Gir-EYDQoFJIXLi"
+uri = "file://artifacts/dailyshot/src/assets/gallery-4.png"
+type = "image"
+title = "Gallery avocado sandwich"
+
+[[generated]]
+id = "MGHSrK2P8afZeDmKt1N97"
+uri = "file://artifacts/dailyshot/src/assets/gallery-5.png"
+type = "image"
+title = "Gallery cafe interior"
+
+[[generated]]
+id = "tS2n744u_2_4R-x1GE0uA"
+uri = "file://artifacts/dailyshot/src/assets/gallery-6.png"
+type = "image"
+title = "Gallery barista"
