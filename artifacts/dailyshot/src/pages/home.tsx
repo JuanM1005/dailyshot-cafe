@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Coffee, Utensils, Users, Instagram, Facebook, MapPin, Phone, Clock, Music, Menu, X } from "lucide-react";
-import heroImg from "@assets/hero_coffee_1776967854301.jpg";
+import heroImg from "@assets/hero_coffee_1776994245499.webp";
 import cuceiLogo from "@assets/cucei_logo_1776967856395.png";
 import gallery1 from "@/assets/gallery-1.png";
 import gallery2 from "@/assets/gallery-2.png";
